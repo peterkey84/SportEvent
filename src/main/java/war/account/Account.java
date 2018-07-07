@@ -5,8 +5,11 @@ import java.time.ZonedDateTime;
 import javax.persistence.*;
 
 import java.time.Instant;
+import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import war.event.Event;
 
 @SuppressWarnings("serial")
 @Entity
@@ -69,4 +72,9 @@ public class Account implements java.io.Serializable {
 	public Instant getCreated() {
 		return created;
 	}
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable
+	@JsonBackReference
+	private Set<Event> events;
 }
