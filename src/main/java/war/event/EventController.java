@@ -22,7 +22,7 @@ public class EventController {
     @Autowired
     EventRepository eventRepository;
 
-    
+
 
 
     @PostMapping("/admin")
