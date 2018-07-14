@@ -17,6 +17,8 @@ public class AccountController {
         this.accountRepository = accountRepository;
     }
 
+
+
     @GetMapping("account/current")
     @ResponseStatus(value = HttpStatus.OK)
     @Secured({"ROLE_USER", "ROLE_ADMIN"})

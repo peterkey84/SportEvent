@@ -30,7 +30,10 @@ public class AccountService implements UserDetailsService {
 	@PostConstruct	
 	protected void initialize() {
 //		save(new Account("user", "demo", "ROLE_USER"));
-//		save(new Account("admin", "admin", "ROLE_ADMIN"));
+		Account admin = accountRepository.findOneByEmail("admin");
+		if (admin == null) {
+		save(new Account("admin", "admin", "ROLE_ADMIN"));
+		}
 	}
 
 	@Transactional

@@ -16,28 +16,33 @@ import java.util.Set;
 //@RequestMapping("/event")
 public class EventController {
 
-//    @Autowired
-//    private EventService eventService;
-//
-//    @Autowired
-//    EventRepository eventRepository;
-//
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Event createEvent(@RequestBody Event newEvent) {
-//        return eventService.createEvent(newEvent);
-//    }
-//
-//    @GetMapping("/findall")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<Event> showEvents() {
-//        return eventRepository.findAll();
-//    }
+    @Autowired
+    private EventService eventService;
+
+    @Autowired
+    EventRepository eventRepository;
+
+    
+
+
+    @PostMapping("/admin")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Event createEvent(@RequestBody Event newEvent) {
+        return eventService.createEvent(newEvent);
+    }
+
+    @GetMapping("/admin/findall")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Event> showEvents() {
+        return eventRepository.findAll();
+    }
+
     @GetMapping("/event")
     public String getCalendar(){
-        System.out.println("blabla");
         return "calendar/calendar";
     }
+
+
 
     @ModelAttribute("module")
     String module() {
