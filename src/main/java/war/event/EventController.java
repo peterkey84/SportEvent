@@ -31,7 +31,6 @@ public class EventController {
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        String name = auth.getName();
 //        return eventService.createEvent(newEvent);
-//
 //    }
 
     @GetMapping()
@@ -41,37 +40,27 @@ public class EventController {
     }
 
     @GetMapping("/event")
-    public String getCalendar(){
+    public String getCalendar(Model model) {
+        model.addAttribute("module", "calendar");
         return "calendar/calendar";
     }
 
-    @GetMapping("/admin")
-    public String getEvent(){
+    @GetMapping("/addEvent")
+    public String getEvent(Model model) {
+        model.addAttribute("module", "event");
+        model.addAttribute("event", new Event());
         return "event/event";
     }
 
-
+    @PostMapping("/addEvent")
+    public String saveEvent(@ModelAttribute Event event) {
+        eventService.createEvent(event);
+        return "event/event";
+    }
 
     @ModelAttribute("module")
     String module() {
         return "about";
     }
 
-
-
-//    @GetMapping("/signUp")
-//    @ResponseStatus(HttpStatus.ACCEPTED)
-//    public Optional<Event> addUserToEvent(
-//            @RequestParam Long eventId,
-//            @RequestParam Long userId){
-//        eventService.addUserToEvent(eventId,userId);
-//        return null;
-//    }
-
-//    @GetMapping("/eventUsers")
-//    @ResponseStatus(HttpStatus.OK)
-//    public Set<Account> showUsersOfEvent(
-//            @RequestParam Long eventId){
-//        return eventService.showUsersOfEvent(eventId);
-//    }
 }

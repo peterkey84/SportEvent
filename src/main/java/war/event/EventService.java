@@ -29,6 +29,7 @@ public class EventService {
             throw new ToBigGroupSizeException
                     (String.format("Group size should not be bigger than 50. Given group size: %s", newEvent.getMaxGroupSize()));
         }
+
         return eventRepository.save(newEvent);
     }
 

@@ -6,11 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Getter;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import war.account.Account;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import java.time.LocalTime;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -32,6 +34,14 @@ public class Event {
     @Max(50)
     private Integer maxGroupSize;
 
+    @NotNull
+    private String dayOfWeek;
+
+    @NotNull
+//    @DateTimeFormat(pattern = "HH:mm")
+    private String time;
+
     @ManyToMany(mappedBy = "events", fetch = FetchType.EAGER)
     private Set<Account> users;
+
 }

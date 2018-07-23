@@ -3,58 +3,64 @@
 <head>
     <title th:text="#{view.index.title}">Welcome!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
     <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
     <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
 <body>
 <div th:replace="fragments/layout :: header"></div>
-<form>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputPassword4">Password</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-        </div>
+<form th:action="@{/addEvent}" th:object="${event}" method="post">
+    <div class="form-group">
+        <label>Event Name</label>
+        <input type="text" class="form-control" id="eventName" placeholder="place event name here"
+               th:field="*{eventName}">
     </div>
     <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-    </div>
-    <div class="form-group">
-        <label for="inputAddress2">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        <label>Maximum group size</label>
+        <input type="text" class="form-control" id="maxGroupSize" placeholder="enter group size here"
+               th:field="*{maxGroupSize}">
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity">
-        </div>
         <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
+            <label>Day of week</label>
+            <select id="choosenDayOfWeek" class="form-control" th:field="*{dayOfWeek}">
+                <option selected disabled value="">Choose...</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wensday">Wensday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
             </select>
         </div>
-        <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
+        <!--<form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">-->
+        <!--<p>Id: <input type="text" th:field="*{id}" /></p>-->
+        <!--<p>Message: <input type="text" th:field="*{content}" /></p>-->
+        <!--<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
+        <!--</form>-->
+        <div class="form-group col-md-4">
+            <label>Hour</label>
+            <select type="text" id="choosenEventHour" class="form-control" th:field="*{time}">
+                <option selected disabled value="">Choose...</option>
+                <option value="08:00">8:00</option>
+                <option value="09:00">9:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+            </select>
         </div>
     </div>
-    <div class="form-group">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-                Check me out
-            </label>
-        </div>
+    <div>
     </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
+    <input type="submit" value="This does not work"/>
 </form>
-
+<form>
+</form>
 </body>
 </html>
